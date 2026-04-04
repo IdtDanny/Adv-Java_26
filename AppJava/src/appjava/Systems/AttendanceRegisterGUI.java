@@ -12,8 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 public class AttendanceRegisterGUI {
-	private static final String SCHOOL_NAME = "UoK";
+    private static final String SCHOOL_NAME = "UoK";
     private static final String DEPARTMENT = "Department of Computer Science, SWE";
     private static final String OPTION = "Advanced Java Programming";
     private static final String LECTURER = "Lecturer: Dr. NTEZIRIZA NKERABAHIZI Josbert";
@@ -45,16 +46,16 @@ public class AttendanceRegisterGUI {
     private void initialize() {
         frame = new JFrame("Attendance Register created by Dr. Josbert");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.GREEN);
+        frame.getContentPane().setBackground(Color.BLUE);
         frame.setLayout(new BorderLayout());
 
         // Main panel to hold all content
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.GREEN);
+        mainPanel.setBackground(Color.BLUE);
 
         // Title Panel
         JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(Color.GREEN);
+        titlePanel.setBackground(Color.BLUE);
         JLabel titleLabel = new JLabel("ATTENDANCE SOFTWARE");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
@@ -63,7 +64,7 @@ public class AttendanceRegisterGUI {
 
         // School Info Panel (placed right after title)
         JPanel schoolInfoPanel = new JPanel();
-        schoolInfoPanel.setBackground(Color.GREEN);
+        schoolInfoPanel.setBackground(Color.BLUE);
         schoolInfoPanel.setLayout(new BoxLayout(schoolInfoPanel, BoxLayout.Y_AXIS));
         
         // Add vertical space after title
@@ -142,7 +143,7 @@ public class AttendanceRegisterGUI {
 
     private JPanel createInputPanel() {
         JPanel inputPanel = new JPanel();
-        inputPanel.setBackground(Color.GREEN);
+        inputPanel.setBackground(Color.BLUE);
         inputPanel.setLayout(new GridLayout(3, 2, 5, 5));
         
         // Student Number Field
@@ -162,7 +163,7 @@ public class AttendanceRegisterGUI {
         
         // Buttons Panel
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.GREEN);
+        buttonPanel.setBackground(Color.BLUE);
         
         // Create buttons
         JButton markAttendanceButton = createButton("Mark Attendance", e -> markAttendance());
@@ -186,7 +187,7 @@ public class AttendanceRegisterGUI {
 
     private JButton createButton(String text, ActionListener action) {
         JButton button = new JButton(text);
-        button.setBackground(Color.BLUE);
+        button.setBackground(Color.GREEN);
         button.setForeground(Color.WHITE);
         button.addActionListener(action);
         return button;
@@ -258,7 +259,7 @@ public class AttendanceRegisterGUI {
     private void openAddStudentDialog() {
         JDialog addStudentDialog = new JDialog(frame, "Add New Student", true);
         addStudentDialog.setLayout(new GridLayout(4, 2, 5, 5));
-        addStudentDialog.getContentPane().setBackground(Color.GREEN);
+        addStudentDialog.getContentPane().setBackground(Color.BLUE);
         
         JLabel studentNoLabel = new JLabel("Student No.:");
         studentNoLabel.setForeground(Color.WHITE);
@@ -273,7 +274,7 @@ public class AttendanceRegisterGUI {
         JTextField surnameEntry = new JTextField();
         
         JButton addButton = new JButton("Add Student");
-        addButton.setBackground(Color.BLUE);
+        addButton.setBackground(Color.GREEN);
         addButton.setForeground(Color.WHITE);
         addButton.addActionListener(e -> {
             try {

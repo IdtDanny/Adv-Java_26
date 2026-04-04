@@ -108,7 +108,7 @@ class LoginDialog extends JFrame {
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
         
-        if (username.equals("Josbert") && password.equals("Josbert")) {
+        if (username.equals("Danny") && password.equals("Danny")) {
             dispose(); // Close login window
             new BankSystemGUI(); // Open main application
         } else {

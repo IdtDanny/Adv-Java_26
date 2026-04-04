@@ -30,7 +30,7 @@ public class BusBookingSystem extends JFrame {
     private DefaultTableModel tableModel;
 
     // ══════════════════════════════════════════════════════════════════════════
-    public BusBookingSystem_Imp_time2() {
+    public BusBookingSystem() {
         setTitle("RITCO COMPANY TICKET BOOKING");
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -474,6 +474,6 @@ public class BusBookingSystem extends JFrame {
     // MAIN
     // ══════════════════════════════════════════════════════════════════════════
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new BusBookingSystem_Imp_time2().setVisible(true));
+        SwingUtilities.invokeLater(() -> new BusBookingSystem().setVisible(true));
     }
 }
