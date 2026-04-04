@@ -30,7 +30,9 @@ public class digitalButton {
         frame.add(panel);
         frame.setSize(500,500);
         frame.setLayout(null);
-        frame.setVisible(true);        
+        frame.setVisible(true);
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
         // TODO code application logic here

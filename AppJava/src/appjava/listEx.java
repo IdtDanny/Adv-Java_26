@@ -8,10 +8,7 @@ public class listEx {
     {
         JFrame frame = new JFrame("List Example");
         Label label = new   Label("Select Program to Display");
-        JButton close = new JButton("x");
         JButton show = new JButton("Show");
-        
-        close.setBounds(300, 60, 50, 30);
         show.setBounds(300, 170, 80, 30);
         
         label.setSize(400,50);
@@ -33,15 +30,15 @@ public class listEx {
         l2.add("Help");
         l2.add("Sing");
         
-        close.addActionListener((ActionEvent e) -> {
-            System.exit(0);
-        });
-        
         show.addActionListener((ActionEvent l) -> {
             String data = "The selected program are ";
             
             for(String selected: l1.getSelectedItems()){
                 data += selected;
+            }
+            
+            for(String selected: l2.getSelectedItems()){
+                data += " for " + selected;
             }
             
             label.setText(data);
@@ -51,12 +48,14 @@ public class listEx {
         frame.add(label);
         frame.add(l1);
         frame.add(l2);
-        frame.add(close);
         frame.add(show);
         frame.setSize(500, 500);
         frame.setLayout(null);
         frame.setVisible(true);
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+  
     public static void main(String[] args) {
         // TODO code application logic here
         new listEx();
