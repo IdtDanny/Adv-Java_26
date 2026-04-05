@@ -6,11 +6,16 @@
 package appjava.Forms;
 
 /**
- *
- * @author STUDENTS
+ * Uok Student Feedback form
+ * @author Danny Idukundatwese
  */
-public class FormEx1 extends javax.swing.JFrame {
 
+import java.sql.*;
+
+public class FormEx1 extends javax.swing.JFrame {
+    
+    public String ConnUrl;
+    public Connection con;
     /**
      * Creates new form FormEx1
      */
@@ -18,6 +23,12 @@ public class FormEx1 extends javax.swing.JFrame {
         initComponents();
         GenderGrp.add(MaleRadio);
         GenderGrp.add(FemaleRadio);
+        try {
+            ConnUrl = "jdbc:mysql://localhost/mysql?" + "user=root&password=";
+            con = DriverManager.getConnection(ConnUrl);
+        }catch(SQLException e){
+            System.out.println("Could not connect: " + e.toString());
+        }
     }
 
     /**
@@ -135,12 +146,20 @@ public class FormEx1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(CommentArea);
 
         SubmitBtn.setBackground(new java.awt.Color(0, 153, 102));
+        SubmitBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         SubmitBtn.setText("SUBMIT");
+        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitBtnActionPerformed(evt);
+            }
+        });
 
         DeleteBtn.setBackground(new java.awt.Color(255, 51, 51));
+        DeleteBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         DeleteBtn.setText("DELETE");
 
         SaveBtn.setBackground(new java.awt.Color(0, 102, 204));
+        SaveBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         SaveBtn.setText("SAVE");
 
         javax.swing.GroupLayout BackPanelLayout = new javax.swing.GroupLayout(BackPanel);
@@ -164,23 +183,23 @@ public class FormEx1 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(FemaleRadio)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(BackPanelLayout.createSequentialGroup()
-                        .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DepartField, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(AgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(76, Short.MAX_VALUE))
-                    .addGroup(BackPanelLayout.createSequentialGroup()
-                        .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackPanelLayout.createSequentialGroup()
+                        .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(BackPanelLayout.createSequentialGroup()
-                                .addComponent(SubmitBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addComponent(DeleteBtn)
-                                .addGap(65, 65, 65)
-                                .addComponent(SaveBtn))
+                                .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NationField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(DepartField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackPanelLayout.createSequentialGroup()
+                                .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(AgeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(NameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(76, 76, 76))))
         );
         BackPanelLayout.setVerticalGroup(
             BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +232,9 @@ public class FormEx1 extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SubmitBtn)
-                    .addComponent(DeleteBtn)
-                    .addComponent(SaveBtn))
+                    .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 56, Short.MAX_VALUE))
         );
 
@@ -253,6 +272,34 @@ public class FormEx1 extends javax.swing.JFrame {
     private void NationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NationFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NationFieldActionPerformed
+
+    private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
+        // TODO add your handling code here:        
+        try{
+            String name = NameField.getText().trim();
+            int age = Integer.parseInt(AgeField.getText().trim());
+            String depart = DepartField.getText().trim();
+            String nation = NationField.getText().trim();
+            String comm = CommentArea.getText().trim();
+            String gender;
+            
+            if(MaleRadio.isSelected()) {
+                gender = MaleRadio.getText().trim();
+            } else {
+                gender = FemaleRadio.getText().trim();
+            }
+                        
+            Statement stmt = null;
+            stmt = con.createStatement();
+            String insertQuery = "INSERT INTO test(Name, Age, Department, Gender, Nationality, Comments) VALUES (" 
+                    + name + "," + age + "," + depart + "," + gender + "," + nation + "," + comm + ")";
+            int rowsAffected = stmt.executeUpdate(insertQuery);
+            
+            System.out.println(rowsAffected);
+        }catch(SQLException e) {
+            System.out.println("Could not insert: " + e.toString());
+        }
+    }//GEN-LAST:event_SubmitBtnActionPerformed
 
     /**
      * @param args the command line arguments
