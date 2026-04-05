@@ -4,34 +4,32 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 public class exJTree {
 
-    exJTree() {
-        JFrame frame = new JFrame("Radio Button Example");
-        
+    JFrame f = new JFrame("JTree Example");
+    {
         DefaultMutableTreeNode style = new DefaultMutableTreeNode("Style");
         DefaultMutableTreeNode color = new DefaultMutableTreeNode("Color");
-        DefaultMutableTreeNode font = new DefaultMutableTreeNode("Font");
+        DefaultMutableTreeNode font = new DefaultMutableTreeNode("font");
+        style.add(color); style.add(font);
         
-        style.add(color);
-        style.add(font);
+        DefaultMutableTreeNode red = new DefaultMutableTreeNode("red");
+        DefaultMutableTreeNode blue = new DefaultMutableTreeNode("blue");
+        DefaultMutableTreeNode green = new DefaultMutableTreeNode("green");
+        color.add(red); color.add(blue); color.add(green);
         
-        DefaultMutableTreeNode red = new DefaultMutableTreeNode("Red");
-        DefaultMutableTreeNode green = new DefaultMutableTreeNode("Green");
-        DefaultMutableTreeNode blue = new DefaultMutableTreeNode("Blue");
-        
-        color.add(red);
-        color.add(green);
-        color.add(blue);
+        DefaultMutableTreeNode times = new DefaultMutableTreeNode("Times");
+        DefaultMutableTreeNode aria = new DefaultMutableTreeNode("Arial");
+        font.add(times); font.add(aria);
         
         JTree jt = new JTree(style);
         
-        frame.add(jt);
+        f.add(jt);
+        f.setSize(400, 400);
+        f.setVisible(true);
+        f.setLayout(null);
         
-        frame.setSize(400,400);
-        frame.setVisible(true);
-        frame.setLayout(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        // TODO code application logic here
             new exJTree();
     }
     

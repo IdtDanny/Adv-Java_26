@@ -24,6 +24,8 @@ public class layoutBorder {
         
         frame.setVisible(true);
         frame.setSize(400,400);
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
         // TODO code application logic here

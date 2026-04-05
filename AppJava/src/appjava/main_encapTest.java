@@ -1,5 +1,5 @@
 
-package javaIdt;
+package appjava;
 
 public class main_encapTest {
     

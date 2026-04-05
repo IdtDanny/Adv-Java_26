@@ -9,10 +9,10 @@ public class MaintenanceReportSystem {
     JPanel p1 = new JPanel(); 
     {
         p1.setBounds(20, 80, 580, 600);
-        p1.setBackground(Color.BLUE);
+        p1.setBackground(Color.white);
         
         f.add(p1);
-        f.setSize(800, 800);
+        f.setSize(900, 800);
         f.setLayout(null);
         f.setVisible(true);
         
