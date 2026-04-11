@@ -1,16 +1,15 @@
 package appjava.Systems;
 
 /**
- *
- * @author idtda
+ * @author Danny Idukundatwese
+ * Module: Advanced Java Programming
+ * RegNo: 2405001032
  */
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.text.SimpleDateFormat;
 
 public class QuotingSystem extends JFrame {
 
@@ -23,10 +22,10 @@ public class QuotingSystem extends JFrame {
 
     private static final String TERMS_AND_CONDITIONS = 
             "Terms and Conditions: \n" +
-            "1. Payment should be made in full before delivery.\n" +
-            "2. Prices are valid for 30 days.\n" +
+            "1. Payment should be made against delivery.\n" +
+            "2. Prices are valid for 30 days only.\n" +
             "3. Any changes to the order must be made in writing.\n" +
-            "4. All sales are final.";
+            "4. Cost is VAT Inclusive 18%.";
 
     public QuotingSystem() {
         setTitle("Quoting System");
@@ -101,7 +100,7 @@ public class QuotingSystem extends JFrame {
         p.add(new JLabel("Item Description:"));
         p.add(descriptionInput);
         
-        p.add(new JLabel("Unit Price (RWF):"));
+        p.add(new JLabel("Disti Unit Price (USD):"));
         p.add(unitPriceInput);
         
         p.add(new JLabel("Quantity:"));
@@ -138,7 +137,7 @@ public class QuotingSystem extends JFrame {
     }
 
     private JPanel buildTablePanel() {
-        String[] cols = {"Customer", "Description", "Unit Price", "Quantity", "Margin (%)", "Profit", "Total"};
+        String[] cols = {"Customer", "TIN", "Description", "Unit Price", "Quantity", "Margin (%)", "Profit", "Total"};
         tableModel = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
@@ -162,11 +161,13 @@ public class QuotingSystem extends JFrame {
     private void calculatePrice() {
         try {
             String customer = customerAddressInput.getText().trim();
+            String customerTin = tinInput.getText().trim();
             String description = descriptionInput.getText().trim();
             double unitPrice = Double.parseDouble(unitPriceInput.getText().trim());
             int quantity = Integer.parseInt(quantityInput.getText().trim());
             double margin = Double.parseDouble(marginInput.getText().trim());
             double exchangeRate = Double.parseDouble(exchangeRateInput.getText().trim());
+            double finalMargin = margin;
 
             double distiSubTotal = unitPrice * quantity;
             margin /= 100; 
@@ -195,7 +196,7 @@ public class QuotingSystem extends JFrame {
             totalPriceInput.setText(String.format("%.2f", total));
 
             // Add quote to table
-            tableModel.addRow(new Object[]{customer, description, unitPrice, quantity, margin, grossProfit, String.format("%.2f", total)});
+            tableModel.addRow(new Object[]{customer, customerTin, description, unitPrice, quantity, finalMargin, String.format("%.2f", grossProfit), String.format("%.2f", total)});
             clearForm();
 
         } catch (NumberFormatException ex) {
@@ -238,17 +239,8 @@ public class QuotingSystem extends JFrame {
                 bw.write(quoteDetails);
             }
 
-            String os = System.getProperty("os.name").toLowerCase();
             ProcessBuilder pb;
-            if (os.contains("win")) {
-                pb = new ProcessBuilder("notepad.exe", tmp.getAbsolutePath());
-            } else if (os.contains("mac")) {
-                pb = new ProcessBuilder("open", "-e", tmp.getAbsolutePath());
-            } else {
-                // Try common Linux text editors
-                String editor = findLinuxEditor();
-                pb = new ProcessBuilder(editor, tmp.getAbsolutePath());
-            }
+            pb = new ProcessBuilder("notepad.exe", tmp.getAbsolutePath());
             pb.start();
 
             JOptionPane.showMessageDialog(this,
@@ -264,29 +256,16 @@ public class QuotingSystem extends JFrame {
 
     private String createQuoteString(int row) {
         StringBuilder quote = new StringBuilder();
-        quote.append("Customer TIN: ").append(tinInput.getText()).append("\n");
-//        quote.append("Customer Address: ").append(tableModel.getValueAt(row, 0)).append("\n\n");
         quote.append("Customer: ").append(tableModel.getValueAt(row, 0)).append("\n");
-        quote.append("Description: ").append(tableModel.getValueAt(row, 1)).append("\n");
-        quote.append("Unit Price: ").append(tableModel.getValueAt(row, 2)).append(" ").append(currencySelector.getSelectedItem()).append("\n");
-        quote.append("Quantity: ").append(tableModel.getValueAt(row, 3)).append("\n");
-        quote.append("Margin: ").append(tableModel.getValueAt(row, 4)).append("%\n");
-        quote.append("Profit: ").append(tableModel.getValueAt(row, 5)).append(" $\n");
-        quote.append("Total Price: ").append(tableModel.getValueAt(row, 4)).append(" ").append(currencySelector.getSelectedItem()).append("\n\n");
+        quote.append("TIN: ").append(tableModel.getValueAt(row, 1)).append("\n");
+        quote.append("Description: ").append(tableModel.getValueAt(row, 2)).append("\n");
+        quote.append("Unit Price: ").append(tableModel.getValueAt(row, 3)).append(" $\n");
+        quote.append("Quantity: ").append(tableModel.getValueAt(row, 4)).append("\n");
+        quote.append("Margin: ").append(tableModel.getValueAt(row, 5)).append("%\n");
+        quote.append("Profit: ").append(tableModel.getValueAt(row, 6)).append(" $\n");
+        quote.append("Total Price: ").append(tableModel.getValueAt(row, 7)).append(" $");
         quote.append(TERMS_AND_CONDITIONS);
         return quote.toString();
-    }
-
-    private String findLinuxEditor() {
-        String[] editors = {"gedit","mousepad","leafpad","xed","kate","nano","xdg-open"};
-        for (String e : editors) {
-            try {
-                Process p = Runtime.getRuntime().exec(new String[]{"which", e});
-                p.waitFor();
-                if (p.exitValue() == 0) return e;
-            } catch (Exception ignored) {}
-        }
-        return "xdg-open";
     }
 
     public static void main(String[] args) {
