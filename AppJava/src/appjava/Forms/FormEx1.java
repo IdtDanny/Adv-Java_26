@@ -11,6 +11,7 @@ package appjava.Forms;
  */
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class FormEx1 extends javax.swing.JFrame {
     
@@ -24,7 +25,7 @@ public class FormEx1 extends javax.swing.JFrame {
         GenderGrp.add(MaleRadio);
         GenderGrp.add(FemaleRadio);
         try {
-            ConnUrl = "jdbc:mysql://localhost/mysql?" + "user=root&password=";
+            ConnUrl = "jdbc:mysql://localhost/test?" + "user=root&password=";
             con = DriverManager.getConnection(ConnUrl);
         }catch(SQLException e){
             System.out.println("Could not connect: " + e.toString());
@@ -157,6 +158,11 @@ public class FormEx1 extends javax.swing.JFrame {
         DeleteBtn.setBackground(new java.awt.Color(255, 51, 51));
         DeleteBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         DeleteBtn.setText("DELETE");
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBtnActionPerformed(evt);
+            }
+        });
 
         SaveBtn.setBackground(new java.awt.Color(0, 102, 204));
         SaveBtn.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
@@ -277,11 +283,16 @@ public class FormEx1 extends javax.swing.JFrame {
         // TODO add your handling code here:        
         try{
             String name = NameField.getText().trim();
-            int age = Integer.parseInt(AgeField.getText().trim());
+            String age = AgeField.getText().trim();
             String depart = DepartField.getText().trim();
             String nation = NationField.getText().trim();
             String comm = CommentArea.getText().trim();
             String gender;
+            
+            if (name.isEmpty() || age.isEmpty() || depart.isEmpty() || nation.isEmpty() || comm.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Fill all required fields!");
+                return;
+            }
             
             if(MaleRadio.isSelected()) {
                 gender = MaleRadio.getText().trim();
@@ -289,17 +300,55 @@ public class FormEx1 extends javax.swing.JFrame {
                 gender = FemaleRadio.getText().trim();
             }
                         
-            Statement stmt = null;
-            stmt = con.createStatement();
-            String insertQuery = "INSERT INTO test(Name, Age, Department, Gender, Nationality, Comments) VALUES (" 
-                    + name + "," + age + "," + depart + "," + gender + "," + nation + "," + comm + ")";
-            int rowsAffected = stmt.executeUpdate(insertQuery);
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO student(Name, Age, Department, Gender, Nationality, Comments) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setString(1, name);
+            stmt.setString(2, age);
+            stmt.setString(3, depart);
+            stmt.setString(4, gender);
+            stmt.setString(5, nation);
+            stmt.setString(6, comm);
             
+            int rowsAffected = stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "Successfully Added!");
             System.out.println(rowsAffected);
+            
         }catch(SQLException e) {
             System.out.println("Could not insert: " + e.toString());
         }
     }//GEN-LAST:event_SubmitBtnActionPerformed
+
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
+        // TODO add your handling code here:        
+        try {
+            
+            String nameDel = JOptionPane.showInputDialog("Name to Delete: ");
+            
+            PreparedStatement select_stmt = con.prepareStatement("SELECT * FROM student WHERE Name = ?");
+            select_stmt.setString(1, nameDel);
+            
+            ResultSet rs = select_stmt.executeQuery();
+            
+            // Checking if the name already exist
+            if (rs.next()) {                
+                String idDel = Integer.toString(rs.getInt("id"));
+                
+                PreparedStatement stmt = con.prepareStatement("DELETE FROM student WHERE id = ?");
+                stmt.setString(1, idDel);
+                
+                int rowsAffected = stmt.executeUpdate();
+                
+                if (rowsAffected > 0){
+                    JOptionPane.showMessageDialog(this, "Deleted Successfully!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Student not found!");
+            }
+                        
+        } catch (SQLException e) {
+            System.out.println("Could not delete: " + e.toString());
+        }
+    }//GEN-LAST:event_DeleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
