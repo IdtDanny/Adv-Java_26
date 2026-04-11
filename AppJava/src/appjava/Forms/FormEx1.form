@@ -7,6 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Uok Students Form"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -79,7 +80,7 @@
                               </Group>
                               <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                               <Component id="NationField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="DepartField" alignment="0" pref="317" max="32767" attributes="0"/>
+                              <Component id="DepartField" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="AgeField" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>

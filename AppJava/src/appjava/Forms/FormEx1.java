@@ -64,6 +64,7 @@ public class FormEx1 extends javax.swing.JFrame {
         SaveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Uok Students Form");
         setResizable(false);
 
         BackPanel.setBackground(new java.awt.Color(0, 153, 153));
@@ -199,7 +200,7 @@ public class FormEx1 extends javax.swing.JFrame {
                                 .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NationField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DepartField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .addComponent(DepartField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackPanelLayout.createSequentialGroup()
                                 .addGroup(BackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(AgeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)

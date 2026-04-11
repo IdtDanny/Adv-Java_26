@@ -53,6 +53,7 @@ public class FormEx2 extends javax.swing.JFrame {
         ExitBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hospital Patient Billing Form");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +121,11 @@ public class FormEx2 extends javax.swing.JFrame {
         ExitBtn.setBackground(new java.awt.Color(204, 255, 255));
         ExitBtn.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
         ExitBtn.setText("Exit");
+        ExitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -219,6 +225,11 @@ public class FormEx2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ExitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBtnActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitBtnActionPerformed
 
     /**
      * @param args the command line arguments
