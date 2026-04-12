@@ -26,8 +26,6 @@ public class FontEx1 extends JFrame {
         g.setFont(new Font("Monospaced", Font.PLAIN, 14));
         g.drawString("Monospaced 14 point Plain", 20, 70);
         
-        g.drawString(g.getFont().getName(), 20, 110); // getting the last set font
-        
         g.setFont(new Font("Serif", Font.BOLD + Font.ITALIC, 18));
         g.setColor(Color.BLUE);
         g.drawString("Serif 18 point Bold", 20, 90);
