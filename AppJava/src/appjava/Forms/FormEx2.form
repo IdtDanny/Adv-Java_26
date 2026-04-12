@@ -290,6 +290,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Calculate"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CalcBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ClearBtn">
           <Properties>

@@ -3,6 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+DATABASE
+
+CREATE DATABASE IF NOT EXISTS `test`;
+
+USE test;
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE IF NOT EXISTS `student` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `Name` varchar(25) NOT NULL,
+  `Age` int(11) NOT NULL,
+  `Department` varchar(25) NOT NULL,
+  `Gender` varchar(10) NOT NULL,
+  `Nationality` varchar(25) NOT NULL,
+  `Comments` text NOT NULL
+);
+
+*/
 package appjava.Forms;
 
 /**

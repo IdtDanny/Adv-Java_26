@@ -5,6 +5,8 @@
  */
 package appjava.Forms;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STUDENTS
@@ -113,6 +115,11 @@ public class FormEx2 extends javax.swing.JFrame {
         CalcBtn.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
         CalcBtn.setForeground(new java.awt.Color(204, 204, 204));
         CalcBtn.setText("Calculate");
+        CalcBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalcBtnActionPerformed(evt);
+            }
+        });
 
         ClearBtn.setBackground(new java.awt.Color(255, 51, 51));
         ClearBtn.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
@@ -230,6 +237,36 @@ public class FormEx2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitBtnActionPerformed
+
+    private void CalcBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcBtnActionPerformed
+        // TODO add your handling code here:
+        try {         
+            if (BaseField.getText().isEmpty() || OtherField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Fill all required!");
+            } else {
+                double baseCost = Double.parseDouble(BaseField.getText());
+                double wardCost = baseCost * 0.15;
+                double labCost = baseCost * 0.05;
+                double grossBill = baseCost + wardCost + labCost;
+                
+                double insCost = grossBill * 0.05;
+                double vatCost = grossBill * 0.18;
+                double otherDedu = Double.parseDouble(OtherField.getText());
+                double netPay = grossBill - insCost + vatCost - otherDedu;
+                
+                WardField.setText(String.format("%.2f", wardCost));
+                LabField.setText(String.format("%.2f", labCost));
+                GrossField.setText(String.format("%.2f", grossBill));
+                InsField.setText(String.format("%.2f", insCost));
+                VatField.setText(String.format("%.2f", vatCost));
+                OtherField.setText(String.format("%.2f", otherDedu));
+                NetField.setText(String.format("%.2f", netPay));
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Could not calculate! " + e);
+        }
+    }//GEN-LAST:event_CalcBtnActionPerformed
 
     /**
      * @param args the command line arguments
