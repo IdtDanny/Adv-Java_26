@@ -25,5 +25,7 @@ public class ShapeEx1 extends JFrame {
         ShapeEx1 s = new ShapeEx1();
         s.setSize(400, 400);
         s.setVisible(true);
+        
+        s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

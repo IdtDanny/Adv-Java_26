@@ -1,5 +1,5 @@
 
-package appjava;
+package appjava.raw;
 
 public class main_encapTest {
     

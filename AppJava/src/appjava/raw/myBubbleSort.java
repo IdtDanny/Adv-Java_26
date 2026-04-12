@@ -1,4 +1,4 @@
-package appjava;
+package appjava.raw;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package appjava;
+package appjava.raw;
 import javax.swing.*;
 import java.awt.*;
 

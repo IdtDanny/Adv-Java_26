@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appjava;
+package appjava.raw;
 import javax.swing.*;
 import java.awt.*;
 

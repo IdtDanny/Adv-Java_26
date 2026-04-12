@@ -1,4 +1,4 @@
-package appjava;
+package appjava.raw;
 
 //Importing Scanner class for reading the user input ...
 import java.util.Scanner;

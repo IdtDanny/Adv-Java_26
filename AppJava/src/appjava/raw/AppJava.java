@@ -1,4 +1,4 @@
-package appjava;
+package appjava.raw;
 import javax.swing.*;
 public class AppJava {
     public static void main(String[] args) {

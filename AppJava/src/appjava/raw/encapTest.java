@@ -1,5 +1,5 @@
 
-package appjava;
+package appjava.raw;
 
 public class encapTest {
     private String name;

@@ -1,5 +1,5 @@
 
-package javaIdt;
+package appjava.raw;
 
 public class Student extends Person {
     private int roll_number;
