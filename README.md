@@ -4,7 +4,6 @@ A small Java application skeleton with build, run, and contribution instructions
 
 ## Prerequisites
 - Java Development Kit (JDK) 11 or later
-- Maven 3.6+ or Gradle 6+
 - Git (optional)
 
 ## Quick start
