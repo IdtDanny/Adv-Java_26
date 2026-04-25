@@ -13,6 +13,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * SERPENTIS: The Neon Snake
  * ─────────────────────────────────────────────────────────────────────────────
  * Classic Snake reimagined with 4 levels, power-ups, obstacles, and effects.
+ * 
+ * Developed by Danny Idukundatwese
+ * 
+ * Student ID 2405001032
  *
  * HOW TO RUN:
  *   javac SnakeGame.java
