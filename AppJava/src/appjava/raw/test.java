@@ -1,34 +1,52 @@
 package appjava.raw;
 
-import javax.swing.*;
-import javax.swing.tree.*;
+import java.sql.*;
 
 public class test {
-    test(){
-        JFrame f = new JFrame();
-        
-        DefaultMutableTreeNode style = new DefaultMutableTreeNode("Style");
-        DefaultMutableTreeNode color = new DefaultMutableTreeNode("Color");
-        DefaultMutableTreeNode red = new DefaultMutableTreeNode("Red");
-        DefaultMutableTreeNode blue = new DefaultMutableTreeNode("Blue");
-        DefaultMutableTreeNode black = new DefaultMutableTreeNode("Black");
-        DefaultMutableTreeNode green = new DefaultMutableTreeNode("Green");
-        DefaultMutableTreeNode font = new DefaultMutableTreeNode("Font");
-        
-        style.add(color); style.add(font);
-        color.add(red); color.add(blue); color.add(black); color.add(green);
-        
-        JTree jt = new JTree(style);
-        
-        f.add(jt);
-        
-        f.setSize(500, 500);
-        f.setLayout(null);
-        f.setVisible(true);
-        
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-    }
+    
     public static void main(String[] args) {
-        new test();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String connectionurl = "jdbc:mysql://localhost/employs?user=root&password=";
+            
+            Connection con = DriverManager.getConnection(connectionurl);
+            
+            System.out.println("Connection established!");
+            
+            Statement stmt = con.createStatement();
+            ResultSet rs = null;
+            
+            String strSql = "DELETE FROM students WHERE firstname = 'Alice'";
+            
+            int rowsAffected = stmt.executeUpdate(strSql);
+            
+            System.out.println("Rows Affected: " + rowsAffected);
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String connectionurl = "jdbc:mysql://localhost/employs?user=root&password=";
+            
+            Connection con = DriverManager.getConnection(connectionurl);
+            
+            System.out.println("Connection Established");
+            
+            Statement stmt = con.createStatement();
+            ResultSet rs = null;
+            
+            String strQry = "UPDATE employs SET location='Kigali' WHERE Identification='1'";
+            
+            int rowsAffected = stmt.executeUpdate(strQry);
+            
+            System.out.println("Rows Affected: " + rowsAffected);
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.toString());
+        }
     }    
 }

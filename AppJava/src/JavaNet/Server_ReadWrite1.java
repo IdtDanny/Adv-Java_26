@@ -12,6 +12,8 @@ public class Server_ReadWrite1 {
             
             Socket scl = srv.accept();
             
+            System.out.println("Connection made!");
+            
             DataInputStream din = new DataInputStream(scl.getInputStream());
             DataOutputStream dout = new DataOutputStream(scl.getOutputStream());
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,19 +21,18 @@ public class Server_ReadWrite1 {
             String str = "", str1 = "";
             
             while(!str.equals("stop")) {
-                str = br.readLine();
-                dout.writeUTF(str);
+                str = din.readUTF();
+                System.out.println("Client Says: " + str);
+                str1 = br.readLine();
+                dout.writeUTF(str1);
                 dout.flush();
-                
-                str1 = din.readUTF();
-                
-                System.out.println("Server Says: " + str1);
             }
             
-            dout.close();
+            din.close();
+            scl.close();
             srv.close();
             
-            System.out.println("Connection Closed.");
+            System.out.println("Server Closed.");
             
         } catch (Exception e) {
             System.out.println("Error: " + e);
