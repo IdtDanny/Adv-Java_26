@@ -6,12 +6,24 @@
 package JavaBeans;
 
 /**
- *
+ * Implementing Serializable
  * @author STUDENTS
  */
 
 import java.io.*;
 
 public class Student implements Serializable {
+    
+    private String name;
+    
+    public Student() {}
+    
+    public void setNom(String name){
+        this.name = name;
+    }
+    
+    public String getNom(){
+        return name;
+    }
     
 }
